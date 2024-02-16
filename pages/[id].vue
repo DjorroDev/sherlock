@@ -1,11 +1,12 @@
 <script setup>
+const config = useRuntimeConfig();
 const route = useRoute();
 
 const params = route.params.id;
 const name = params.replaceAll("-", " ");
 
 const { data, pending, errorr } = await useAsyncData("contracts", () =>
-  $fetch(`http://127.0.0.1:5000/api/contracts-by-name/${name}`)
+  $fetch(`${config.apiSecret}/api/contracts-by-name/${name}`)
 );
 
 const isOpen = ref(false);

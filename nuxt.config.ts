@@ -6,4 +6,7 @@ export default defineNuxtConfig({
   routeRules: {
     "/*": { cors: true },
   },
+  runtimeConfig: {
+    apiSecret: "", // can be overridden by NUXT_API_SECRET environment variable
+  },
 });

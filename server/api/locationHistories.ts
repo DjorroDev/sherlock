@@ -1,6 +1,6 @@
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
-  $fetch("http://127.0.0.1:5000/api/location-histories/", {
+  $fetch(`${process.env["NUXT_API_SECRET"]}/api/location-histories/`, {
     method: "POST",
     body: {
       contract_id: Number(query.id),
@@ -9,5 +9,5 @@ export default defineEventHandler(async (event) => {
     },
     headers: { "Content-Type": "application/json" },
   });
-  return "ok";
+  return true;
 });
