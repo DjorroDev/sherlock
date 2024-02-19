@@ -3,7 +3,7 @@ export default defineEventHandler(async (event) => {
   $fetch(`${process.env["NUXT_API_SECRET"]}/api/location-histories/`, {
     method: "POST",
     body: {
-      contract_id: Number(query.id),
+      contract_id: query.id,
       latitude: query.latitude,
       longitude: query.longitude,
       accuracy: query.accuracy,

@@ -9,7 +9,7 @@ const { data, pending, errorr } = await useAsyncData("contracts", () =>
   $fetch(`${config.apiSecret}/api/contracts-by-name/${name}`)
 );
 
-console.log(data.value);
+// console.log(data.value);
 
 const isOpen = ref(false);
 const { coords, locatedAt, error, resume, pause } = useGeolocation();
@@ -26,29 +26,8 @@ function sendLocation() {
   return false;
 }
 
-// function accessLocation() {
-//   const { coords, locatedAt, error, resume, pause } = useGeolocation();
-//   setTimeout(() => {
-//     console.log(
-//       data.value.data.id,
-//       coords.value.latitude,
-//       coords.value.longitude,
-//       error.value,
-//       "p"
-//     );
-//   }, 100);
-//   resume;
-
-//   if (!error) {
-// $fetch("/api/contact", {
-//   method: "POST",
-//   body: { contract_id: data.data.id, latitude: coords.latitude, longitude: coords.longitude },
-// });
-//   }
-// }
-
 useHead({
-  title: "BFI TAGIHAN",
+  title: "BFI History Payment Customer",
   htmlAttrs: {
     lang: "id",
   },
@@ -97,19 +76,6 @@ useHead({
     <div class="min-h-screen flex items-center">
       <img class="overflow-x-auto my-auto" :src="data.data.data" alt="tagihan" />
     </div>
-    <!-- <img src="http://127.0.0.1:5000/static/DAMIAN.jpg" alt="" /> -->
-    <!-- <UButton>buka</UButton> -->
-    <!-- <pre>Accuracy: {{ coords.accuracy }}</pre>
-    <pre>Longitude: {{ coords.longitude }}</pre>
-    <pre>Latitude: {{ coords.latitude }}</pre>
-    <pre>{{ error }}</pre> -->
-    <!-- <ULink
-      target="_blank"
-      :to="`https://www.google.com/maps/search/?api=1&query=${coords.latitude},${coords.longitude}`"
-      >GMaps</ULink
-    > -->
-    <!-- <UButton @click="resume">resume</UButton>
-    <UButton @click="pause">pause</UButton> -->
     <UModal v-model="isOpen" prevent-close>
       <UCard :ui="{ ring: '', divide: '' }">
         <template #header>
