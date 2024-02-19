@@ -6,6 +6,7 @@ export default defineEventHandler(async (event) => {
       contract_id: Number(query.id),
       latitude: query.latitude,
       longitude: query.longitude,
+      accuracy: query.accuracy,
     },
     headers: { "Content-Type": "application/json" },
   });

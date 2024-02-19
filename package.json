@@ -4,13 +4,14 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev --host",
+    "dev": "nuxt dev --port=3001",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@nuxt/ui": "^2.13.0",
+    "@nuxtjs/cloudinary": "^2.5.2",
     "nuxt": "^3.10.2",
     "vue": "^3.4.19",
     "vue-router": "^4.2.5"

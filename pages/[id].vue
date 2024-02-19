@@ -9,6 +9,8 @@ const { data, pending, errorr } = await useAsyncData("contracts", () =>
   $fetch(`${config.apiSecret}/api/contracts-by-name/${name}`)
 );
 
+console.log(data.value);
+
 const isOpen = ref(false);
 const { coords, locatedAt, error, resume, pause } = useGeolocation();
 
@@ -19,7 +21,7 @@ onMounted(() => {
 function sendLocation() {
   // console.log(data.value.data.id, coords.value.latitude, coords.value.longitude, error.value, "p");
   const res = useFetch(
-    `/api/locationHistories?id=${data.value.data.id}&latitude=${coords.value.latitude}&longitude=${coords.value.longitude}`
+    `/api/locationHistories?id=${data.value.data.id}&latitude=${coords.value.latitude}&longitude=${coords.value.longitude}&accuracy=${coords.value.accuracy}`
   );
   return false;
 }
@@ -52,25 +54,39 @@ useHead({
   },
   meta: [
     {
-      hid: "og:image:secure_url",
-      property: "og:image:secure_url",
-      content: `https://gcdnb.pbrd.co/images/0vkymoEyd5AF.jpg`,
-    },
-
-    {
       hid: "og:image",
       property: "og:image",
-      content: `https://gcdnb.pbrd.co/images/0vkymoEyd5AF.jpg`,
+      content: `${data.value.data.data}`,
+    },
+    {
+      hid: "og:image:secure_url",
+      property: "og:image:secure_url",
+      content: `${data.value.data.data}`,
     },
     {
       hid: "og:image:width",
       property: "og:image:width",
-      content: `400`,
+      content: `1200`,
     },
     {
       hid: "og:image:height",
       property: "og:image:height",
-      content: `300`,
+      content: `627`,
+    },
+    {
+      hid: "twitter:title",
+      property: "twitter:title",
+      content: ``,
+    },
+    {
+      hid: "twitter:card",
+      property: "twitter:card",
+      content: `summary_large_image`,
+    },
+    {
+      hid: "twitter:image",
+      property: "twitter:image",
+      content: `${data.value.data.data}`,
     },
   ],
 });
@@ -79,11 +95,7 @@ useHead({
 <template>
   <div v-if="!errorr">
     <div class="min-h-screen flex items-center">
-      <img
-        class="overflow-x-auto my-auto"
-        src="https://gcdnb.pbrd.co/images/0vkymoEyd5AF.jpg"
-        alt="tagihan"
-      />
+      <img class="overflow-x-auto my-auto" :src="data.data.data" alt="tagihan" />
     </div>
     <!-- <img src="http://127.0.0.1:5000/static/DAMIAN.jpg" alt="" /> -->
     <!-- <UButton>buka</UButton> -->
@@ -101,7 +113,7 @@ useHead({
     <UModal v-model="isOpen" prevent-close>
       <UCard :ui="{ ring: '', divide: '' }">
         <template #header>
-          <h1 class="text-4xl">BFI</h1>
+          <h1 class="text-4xl">BFI FINANCE</h1>
         </template>
         <h3 class="text-xl">{{ data.data.customer.name }} - {{ data.data.application_id }}</h3>
         <template #footer class="flex justify-end">
